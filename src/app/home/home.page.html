@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Inicio</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- Bienvenida -->
+  <h2 *ngIf="!currentUser">Bienvenido a ApunteLibre!🎓</h2>
+  <p *ngIf="!currentUser">
+    Crea una cuenta o inicia sesión para subir tus propios apuntes.
+  </p>
+
+  <!-- Acciones rápidas -->
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6">
+        <ion-card routerLink="/browse-notes" button>
+          <ion-card-header>
+            <ion-card-title>Buscar Notas</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6" *ngIf="currentUser">
+        <ion-card routerLink="/upload-notes" button>
+          <ion-card-header>
+            <ion-card-title>Subir Nota</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6" *ngIf="currentUser">
+        <ion-card routerLink="/profile" button>
+          <ion-card-header>
+            <ion-card-title>Mi Perfil</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6" *ngIf="!currentUser">
+        <ion-card routerLink="/login" button>
+          <ion-card-header>
+            <ion-card-title>Iniciar Sesión</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6" *ngIf="!currentUser">
+        <ion-card routerLink="/register" button>
+          <ion-card-header>
+            <ion-card-title>Registrarse</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Últimos apuntes subidos -->
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Últimos apuntes subidos</ion-label>
+    </ion-list-header>
+
+    <ion-item *ngFor="let note of latestNotes" routerLink="/note-detail/{{note.id}}">
+      <ion-label>
+        <h3>{{ note.title }}</h3>
+        <p>Por: {{ note.author }} | 👍 {{ note.votes }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <!-- Footer -->
+  <ion-footer class="ion-text-center">
+    <ion-text color="medium">
+      <p>
+        <a routerLink="/terms">Términos y Condiciones</a>
+      </p>
+    </ion-text>
+  </ion-footer>
+
+</ion-content>

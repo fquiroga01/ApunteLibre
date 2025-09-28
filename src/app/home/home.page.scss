@@ -1,0 +1,81 @@
+ion-content {
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-top: 16px;
+  --padding-bottom: 16px;
+  background-color: #f8f9fa;
+}
+
+/* Cards de acciones rápidas */
+ion-card {
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  ion-card-header {
+    padding: 20px 0;
+  }
+
+  ion-card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  }
+}
+
+/* Listado de notas */
+ion-list {
+  margin-top: 24px;
+
+  ion-item {
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    transition: background 0.2s ease;
+
+    &:hover {
+      background-color: #f1f3f5;
+    }
+
+    ion-label h3 {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    ion-label p {
+      font-size: 0.85rem;
+      color: #6c757d;
+    }
+  }
+}
+
+/* Títulos de bienvenida */
+h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+p {
+  font-size: 0.95rem;
+  color: #495057;
+  margin-bottom: 16px;
+}
+
+/* Footer */
+ion-footer {
+  margin-top: 24px;
+  text-align: center;
+
+  a {
+    text-decoration: none;
+    color: #3880ff;
+    font-weight: 500;
+  }
+}

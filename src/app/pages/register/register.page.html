@@ -1,0 +1,93 @@
+<app-navbar></app-navbar>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Registro de Usuario</ion-card-title>
+      <ion-card-subtitle>Completa tus datos</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+        <!-- Nombre de usuario -->
+        <ion-item>
+          <ion-label position="floating">Nombre de usuario</ion-label>
+          <ion-input formControlName="username"></ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="f.username.invalid && f.username.touched">
+          Nombre de usuario requerido
+        </ion-text>
+
+        <!-- RUT -->
+        <ion-item>
+          <ion-label position="floating">RUT (12345678-9)</ion-label>
+          <ion-input formControlName="rut"></ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="f.rut.invalid && f.rut.touched">
+          RUT inválido (Formato: 12345678-9)
+        </ion-text>
+
+        <!-- Correo -->
+        <ion-item>
+          <ion-label position="floating">Correo electrónico</ion-label>
+          <ion-input formControlName="email" type="email"></ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="f.email.invalid && f.email.touched">
+          Email inválido
+        </ion-text>
+
+        <!-- Región -->
+        <ion-item>
+          <ion-label>Región</ion-label>
+          <ion-select formControlName="region" (ionChange)="filtrarComunas()">
+            <ion-select-option *ngFor="let r of regiones" [value]="r">{{ r }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <!-- Comuna -->
+        <ion-item>
+          <ion-label>Comuna</ion-label>
+          <ion-select formControlName="comuna">
+            <ion-select-option *ngFor="let c of comunasFiltradas" [value]="c">{{ c }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <!-- Contraseña -->
+        <ion-item>
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input formControlName="password" type="password"></ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="f.password.errors?.minlength">
+          Mínimo 6 caracteres
+        </ion-text>
+
+        <!-- Confirmar Contraseña -->
+        <ion-item>
+          <ion-label position="floating">Confirmar Contraseña</ion-label>
+          <ion-input formControlName="confirmPassword" type="password"></ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="registerForm.errors?.mismatch">
+          Las contraseñas no coinciden
+        </ion-text>
+
+        <!-- Términos -->
+        <ion-item lines="none">
+          <ion-checkbox slot="start" formControlName="terms"></ion-checkbox>
+          <ion-label>
+            Acepto los <a href="#" (click)="openTerms()">Términos y Condiciones</a>
+          </ion-label>
+        </ion-item>
+        <ion-text color="danger" *ngIf="f.terms.invalid && f.terms.touched">
+          Debes aceptar los términos
+        </ion-text>
+
+        <!-- Botón Registrar -->
+        <ion-button expand="block" type="submit" [disabled]="registerForm.invalid" class="ion-margin-top">
+          Registrarse
+        </ion-button>
+
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

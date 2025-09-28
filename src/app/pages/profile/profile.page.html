@@ -1,0 +1,43 @@
+<app-navbar></app-navbar>
+
+<ion-content class="ion-padding">
+
+  <ion-card>
+    <ion-card-header>
+      <ion-avatar *ngIf="user.avatar; else initialsAvatar">
+        <img [src]="user.avatar" />
+      </ion-avatar>
+      <ng-template #initialsAvatar>
+        <ion-avatar class="avatar-initials">{{ avatarInitials }}</ion-avatar>
+      </ng-template>
+
+      <ion-card-title>
+        <ion-input [(ngModel)]="user.username" placeholder="Nombre"></ion-input>
+      </ion-card-title>
+      <ion-card-subtitle>
+        <ion-input [(ngModel)]="user.email" placeholder="Correo"></ion-input>
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-button expand="block" (click)="saveProfile()">Actualizar Perfil</ion-button>
+      <ion-button expand="block" color="primary" (click)="goToUploadNote()" class="ion-margin-top">
+        Subir nueva nota
+      </ion-button>
+      <ion-button expand="block" color="medium" (click)="goToMyNotes()" class="ion-margin-top">
+        Ver mis notas
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="totalVotes > 0 || topNote">
+    <ion-card-header>
+      <ion-card-title>Estadísticas</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Total votos recibidos: {{ totalVotes }}</p>
+      <p *ngIf="topNote">Nota más votada: {{ topNote.title }} ({{ topNote.upvotes }} votos)</p>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
