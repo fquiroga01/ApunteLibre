@@ -1,0 +1,7 @@
+{
+  "name": "apuntesApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

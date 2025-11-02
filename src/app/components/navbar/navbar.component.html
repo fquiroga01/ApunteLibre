@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>ApunteLibre</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/home">Home</ion-button>
+      <ion-button routerLink="/browse-notes">Buscar Notas</ion-button>
+
+      <!-- Visible solo si hay usuario logueado -->
+      <ion-button *ngIf="currentUser" routerLink="/profile">Perfil</ion-button>
+      <ion-button *ngIf="currentUser" (click)="logout()">Cerrar sesión</ion-button>
+
+      <!-- Visible solo si NO hay usuario logueado -->
+      <ion-button *ngIf="!currentUser" routerLink="/register">Registro</ion-button>
+      <ion-button *ngIf="!currentUser" routerLink="/login">Iniciar sesión</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>

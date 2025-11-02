@@ -1,0 +1,31 @@
+<app-navbar></app-navbar>
+
+<ion-content class="ion-padding">
+
+  <ion-button fill="clear" (click)="goBackToProfile()">
+    <ion-icon slot="start" name="arrow-back"></ion-icon>
+    Volver al perfil
+  </ion-button>
+
+  <ion-card *ngIf="myNotes.length > 0; else noNotes">
+    <ion-card-header>
+      <ion-card-title>Mis notas</ion-card-title>
+    </ion-card-header>
+    <ion-list>
+      <ion-item *ngFor="let note of myNotes">
+        <ion-label>
+          <h2>{{ note.title }}</h2>
+          <p>{{ note.description }}</p>
+        </ion-label>
+        <ion-button color="danger" (click)="deleteNote(note)">Eliminar</ion-button>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+  <ng-template #noNotes>
+    <ion-card>
+      <ion-card-content>No has subido notas aún.</ion-card-content>
+    </ion-card>
+  </ng-template>
+
+</ion-content>

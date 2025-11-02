@@ -1,0 +1,31 @@
+<app-navbar></app-navbar>
+
+<ion-content class="ion-padding">
+
+  <ion-searchbar [(ngModel)]="searchTerm" placeholder="Buscar por título o materia"></ion-searchbar>
+
+  <ion-card *ngFor="let note of filteredNotes">
+    <ion-card-header>
+      <ion-card-title>{{ note.title }}</ion-card-title>
+      <ion-card-subtitle>{{ note.subject }} - {{ note.date }}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      {{ note.description }}
+    </ion-card-content>
+
+    <ion-card-footer>
+      <ion-button fill="clear" size="small" (click)="upvote(note)">⬆️ {{ note.upvotes }}</ion-button>
+      <ion-button fill="clear" size="small" (click)="downvote(note)">⬇️</ion-button>
+      <ion-button fill="clear" size="small" (click)="toggleFavorite(note)">
+        {{ note.favorite ? '⭐' : '☆' }}
+      </ion-button>
+
+      <!-- Solo admins pueden eliminar -->
+      <ion-button *ngIf="currentUser.role === 'admin'" fill="clear" color="danger" size="small" (click)="deleteNote(note)">
+        ❌
+      </ion-button>
+    </ion-card-footer>
+  </ion-card>
+
+</ion-content>

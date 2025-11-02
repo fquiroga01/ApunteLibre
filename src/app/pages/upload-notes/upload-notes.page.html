@@ -1,0 +1,56 @@
+<app-navbar></app-navbar>
+
+<ion-content class="ion-padding">
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Subir Nuevo Apunte</ion-card-title>
+      <ion-card-subtitle>Completa los datos de la nota</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <form [formGroup]="noteForm" (ngSubmit)="onSubmit()">
+
+        <!-- Título -->
+        <ion-item>
+          <ion-label position="floating">Título</ion-label>
+          <ion-input formControlName="title"></ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="f.title.invalid && f.title.touched">
+          Título requerido
+        </ion-text>
+
+        <!-- Materia -->
+        <ion-item>
+          <ion-label position="floating">Materia</ion-label>
+          <ion-input formControlName="subject"></ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="f.subject.invalid && f.subject.touched">
+          Materia requerida
+        </ion-text>
+
+        <!-- Descripción -->
+        <ion-item>
+          <ion-label position="floating">Descripción / Contenido</ion-label>
+          <ion-textarea formControlName="description"></ion-textarea>
+        </ion-item>
+        <ion-text color="danger" *ngIf="f.description.invalid && f.description.touched">
+          Descripción requerida
+        </ion-text>
+
+        <!-- Archivo opcional -->
+        <ion-item>
+          <ion-label>Subir archivo</ion-label>
+          <input type="file" (change)="onFileSelected($event)" />
+        </ion-item>
+
+        <!-- Botón de subir nota -->
+        <ion-button expand="block" type="submit" [disabled]="noteForm.invalid" class="ion-margin-top">
+          Subir Apunte
+        </ion-button>
+
+      </form>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
